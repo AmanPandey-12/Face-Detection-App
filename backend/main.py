@@ -21,6 +21,10 @@ app.add_middleware(
 cascade_path = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
 face_cascade = cv2.CascadeClassifier(cascade_path)
 
+@app.get("/")
+def home():
+    return {"message": "Face Detection API is running"}
+
 @app.post("/detect")
 async def detect_faces(file: UploadFile = File(...)):
     try:
